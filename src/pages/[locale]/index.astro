@@ -1,0 +1,9 @@
+---
+import RecipeIndex from '../../components/RecipeIndex.astro';
+import { isLocale } from '../../config/locales';
+import { recipeIndexData } from '../../lib/recipes';
+const locale = Astro.params.locale!;
+if (!isLocale(locale) || locale === 'en') return Astro.rewrite('/404');
+const data = await recipeIndexData(locale, Astro.url.searchParams);
+---
+<RecipeIndex locale={locale} {...data} />

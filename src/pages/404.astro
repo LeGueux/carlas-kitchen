@@ -1,0 +1,10 @@
+---
+import Notebook from '../layouts/Notebook.astro';
+import { isLocale, localePath } from '../config/locales';
+import { ui } from '../i18n/ui';
+const segment = Astro.url.pathname.split('/')[1];
+const locale = isLocale(segment) ? segment : 'en';
+const copy = ui[locale];
+Astro.response.status = 404;
+---
+<Notebook locale={locale} title="404"><section class="empty-state not-found"><p class="eyebrow">404</p><h1>{copy.notFound}</h1><p>{copy.notFoundBody}</p><a class="text-link" href={localePath(locale)}>{copy.home} →</a></section></Notebook>

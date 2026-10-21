@@ -1,0 +1,30 @@
+---
+if (!import.meta.env.DEV) return new Response('Not found', { status: 404 });
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Development photo acceptance test</title></head><body><h1>Development photo acceptance test</h1><p>This development-only check uses a generated noise image, never a personal photo.</p><p><a href="/_emdash/api/auth/dev-bypass?redirect=/dev-tests/photo">Native development sign-in</a></p><button id="run">Test automatic photo preparation</button><button id="upload">Test native admin upload</button><output id="result" aria-live="polite"></output><script>
+import { preparePhoto } from '../../client/prepare-photo';
+document.querySelector('#run')!.addEventListener('click', async () => {
+  const result = document.querySelector('#result')!;
+  result.textContent = 'Preparing photo…';
+  try {
+    const blob = await (await fetch('/dev-tests/large.jpg')).blob();
+    const prepared = await preparePhoto(new File([blob], 'large-example.jpg', { type: 'image/jpeg' }));
+    if (blob.size <= 3_000_000 || prepared.size >= 2_500_000) throw new Error('Photo size assertion failed');
+    result.textContent = `PASS: ${blob.size} original bytes → ${prepared.size} prepared bytes; JPEG ready for the native EmDash upload.`;
+  } catch (error) { result.textContent = `FAIL: ${error instanceof Error ? error.message : 'Unexpected failure'}`; }
+});
+document.querySelector('#upload')!.addEventListener('click', async () => {
+  const result = document.querySelector('#result')!;
+  result.textContent = 'Uploading generated photo through the native administration…';
+  try {
+    const { i18n } = await import('@lingui/core');
+    i18n.load('en', {});
+    i18n.activate('en');
+    const { uploadMedia } = await import('@emdash-cms/admin');
+    const blob = await (await fetch('/dev-tests/large.jpg')).blob();
+    const media = await uploadMedia(new File([blob], 'large-example.jpg', { type: 'image/jpeg' }), { deduplicate: false });
+    if (!media.size || media.size > 2_500_000) throw new Error('Native upload did not reduce the photo.');
+    result.textContent = `PASS: native EmDash upload reduced ${blob.size} bytes to ${media.size} bytes and stored the photo in Netlify Blobs (${media.id}).`;
+  } catch (error) { result.textContent = `FAIL: ${error instanceof Error ? error.message : 'Unexpected failure'}`; }
+});
+</script></body></html>

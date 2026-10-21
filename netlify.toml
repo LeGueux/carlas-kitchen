@@ -1,0 +1,17 @@
+[build]
+command = "npm run check && npm run build"
+publish = "dist"
+
+[build.environment]
+NODE_VERSION = "24.22.1"
+NPM_FLAGS = "--include=optional"
+
+[functions]
+node_bundler = "esbuild"
+
+# Previews are deliberately unavailable and never initialize the CMS.
+[context.deploy-preview.environment]
+KITCHEN_WRITES = "disabled"
+
+[context.branch-deploy.environment]
+KITCHEN_WRITES = "disabled"

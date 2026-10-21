@@ -1,0 +1,252 @@
+{
+  "version": "1",
+  "defaultLocale": "en",
+  "meta": {
+    "name": "Clearly fictional recipe examples"
+  },
+  "taxonomies": [
+    {
+      "id": "categories-en",
+      "name": "category",
+      "label": "Categories",
+      "labelSingular": "Category",
+      "hierarchical": false,
+      "collections": [
+        "recipes"
+      ],
+      "locale": "en",
+      "terms": [
+        {
+          "id": "term-en-0",
+          "slug": "everyday",
+          "label": "Everyday cooking",
+          "locale": "en"
+        },
+        {
+          "id": "term-en-1",
+          "slug": "sweet",
+          "label": "Something sweet",
+          "locale": "en"
+        }
+      ]
+    },
+    {
+      "id": "categories-fr",
+      "name": "category",
+      "label": "Catégories",
+      "labelSingular": "Catégorie",
+      "hierarchical": false,
+      "collections": [
+        "recipes"
+      ],
+      "locale": "fr",
+      "translationOf": "categories-en",
+      "terms": [
+        {
+          "id": "term-fr-0",
+          "slug": "quotidien",
+          "label": "Au quotidien",
+          "locale": "fr",
+          "translationOf": "term-en-0"
+        },
+        {
+          "id": "term-fr-1",
+          "slug": "douceurs",
+          "label": "Douceurs",
+          "locale": "fr",
+          "translationOf": "term-en-1"
+        }
+      ]
+    },
+    {
+      "id": "categories-pt",
+      "name": "category",
+      "label": "Categorias",
+      "labelSingular": "Categoria",
+      "hierarchical": false,
+      "collections": [
+        "recipes"
+      ],
+      "locale": "pt-PT",
+      "translationOf": "categories-en",
+      "terms": [
+        {
+          "id": "term-pt-0",
+          "slug": "dia-a-dia",
+          "label": "Dia a dia",
+          "locale": "pt-PT",
+          "translationOf": "term-en-0"
+        },
+        {
+          "id": "term-pt-1",
+          "slug": "doces",
+          "label": "Doces",
+          "locale": "pt-PT",
+          "translationOf": "term-en-1"
+        }
+      ]
+    }
+  ],
+  "content": {
+    "recipes": [
+      {
+        "id": "tomato-en",
+        "slug": "example-roasted-tomato-toast",
+        "locale": "en",
+        "status": "published",
+        "data": {
+          "prep_minutes": 10,
+          "cook_minutes": 25,
+          "servings": 2,
+          "rating": 4,
+          "is_example": true,
+          "cover_image": {
+            "provider": "external",
+            "id": "example-tomato",
+            "src": "/placeholders/tomato.png",
+            "width": 1200,
+            "height": 900,
+            "alt": "Illustrated tomato placeholder — fictional example"
+          },
+          "title": "Roasted tomato toast",
+          "description": "A fictional example: sweet tomatoes, crisp bread and a little olive oil.",
+          "ingredients": "400 g cherry tomatoes\n2 slices of bread\n2 tbsp olive oil\n1 pinch of salt\nA few basil leaves",
+          "steps": "Heat the oven to 200 °C.\nPlace the tomatoes in a small dish with the oil and salt. Roast for 25 minutes.\nToast the bread, spoon over the tomatoes and finish with basil.",
+          "notes": "Example note, not Carla’s review: try a thicker slice of bread next time."
+        },
+        "taxonomies": {
+          "category": [
+            "everyday"
+          ]
+        }
+      },
+      {
+        "id": "tomato-fr",
+        "translationOf": "tomato-en",
+        "slug": "exemple-tartines-tomates-roties",
+        "locale": "fr",
+        "status": "published",
+        "data": {
+          "prep_minutes": 10,
+          "cook_minutes": 25,
+          "servings": 2,
+          "rating": 4,
+          "is_example": true,
+          "cover_image": {
+            "provider": "external",
+            "id": "example-tomato",
+            "src": "/placeholders/tomato.png",
+            "width": 1200,
+            "height": 900,
+            "alt": "Illustrated tomato placeholder — fictional example"
+          },
+          "title": "Tartines aux tomates rôties",
+          "description": "Un exemple fictif : des tomates fondantes, du pain croustillant et un filet d’huile d’olive.",
+          "ingredients": "400 g de tomates cerises\n2 tranches de pain\n2 c. à soupe d’huile d’olive\n1 pincée de sel\nQuelques feuilles de basilic",
+          "steps": "Préchauffer le four à 200 °C.\nMettre les tomates dans un petit plat avec l’huile et le sel. Faire rôtir 25 minutes.\nGriller le pain, y déposer les tomates et ajouter le basilic.",
+          "notes": "Note d’exemple, pas un avis de Carla : essayer une tranche de pain plus épaisse la prochaine fois."
+        },
+        "taxonomies": {
+          "category": [
+            "quotidien"
+          ]
+        }
+      },
+      {
+        "id": "tomato-pt",
+        "translationOf": "tomato-en",
+        "slug": "exemplo-tostas-tomate-assado",
+        "locale": "pt-PT",
+        "status": "published",
+        "data": {
+          "prep_minutes": 10,
+          "cook_minutes": 25,
+          "servings": 2,
+          "rating": 4,
+          "is_example": true,
+          "cover_image": {
+            "provider": "external",
+            "id": "example-tomato",
+            "src": "/placeholders/tomato.png",
+            "width": 1200,
+            "height": 900,
+            "alt": "Illustrated tomato placeholder — fictional example"
+          },
+          "title": "Tostas de tomate assado",
+          "description": "Um exemplo fictício: tomate macio, pão estaladiço e um fio de azeite.",
+          "ingredients": "400 g de tomate-cereja\n2 fatias de pão\n2 colheres de sopa de azeite\n1 pitada de sal\nAlgumas folhas de manjericão",
+          "steps": "Aquecer o forno a 200 °C.\nColocar o tomate num tabuleiro pequeno com o azeite e o sal. Assar durante 25 minutos.\nTorrar o pão, colocar o tomate por cima e terminar com o manjericão.",
+          "notes": "Nota de exemplo, não é uma opinião da Carla: experimentar uma fatia de pão mais grossa da próxima vez."
+        },
+        "taxonomies": {
+          "category": [
+            "dia-a-dia"
+          ]
+        }
+      },
+      {
+        "id": "lemon-en",
+        "slug": "example-lemon-yogurt",
+        "locale": "en",
+        "status": "published",
+        "data": {
+          "prep_minutes": 5,
+          "cook_minutes": 0,
+          "servings": 2,
+          "rating": null,
+          "is_example": true,
+          "cover_image": {
+            "provider": "external",
+            "id": "example-lemon",
+            "src": "/placeholders/lemon.png",
+            "width": 1200,
+            "height": 900,
+            "alt": "Illustrated lemon placeholder — fictional example"
+          },
+          "title": "Lemon & honey yogurt",
+          "description": "A fictional example for a quiet afternoon. The Portuguese translation is deliberately missing.",
+          "ingredients": "300 g plain yogurt\n1 lemon, zest only\n2 tsp honey",
+          "steps": "Divide the yogurt between two bowls.\nAdd the lemon zest and drizzle with honey.",
+          "notes": "Example note: no cooking needed."
+        },
+        "taxonomies": {
+          "category": [
+            "sweet"
+          ]
+        }
+      },
+      {
+        "id": "lemon-fr",
+        "translationOf": "lemon-en",
+        "slug": "exemple-yaourt-citron-miel",
+        "locale": "fr",
+        "status": "published",
+        "data": {
+          "prep_minutes": 5,
+          "cook_minutes": 0,
+          "servings": 2,
+          "rating": null,
+          "is_example": true,
+          "cover_image": {
+            "provider": "external",
+            "id": "example-lemon",
+            "src": "/placeholders/lemon.png",
+            "width": 1200,
+            "height": 900,
+            "alt": "Illustrated lemon placeholder — fictional example"
+          },
+          "title": "Yaourt au citron et au miel",
+          "description": "Un exemple fictif pour une pause tranquille. La traduction portugaise est volontairement absente.",
+          "ingredients": "300 g de yaourt nature\n1 citron, le zeste seulement\n2 c. à café de miel",
+          "steps": "Répartir le yaourt dans deux bols.\nAjouter le zeste de citron et verser un filet de miel.",
+          "notes": "Note d’exemple : aucune cuisson nécessaire."
+        },
+        "taxonomies": {
+          "category": [
+            "douceurs"
+          ]
+        }
+      }
+    ]
+  }
+}
