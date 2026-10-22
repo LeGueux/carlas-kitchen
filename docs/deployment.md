@@ -2,6 +2,8 @@
 
 These are **remaining external steps**, not a record of a completed deployment. Use new resources belonging only to this experiment. Never copy credentials/data from another service. Stay on the Free plans, do not add a payment method or enable a paid add-on. Carla does not need either infrastructure account.
 
+For a first installation, follow the [step-by-step walkthrough](first-deployment.md), including PowerShell commands, a separate ignored `.env.remote` and success checkpoints. The reference below describes required build/runtime availability; it does not require paid custom environment scopes.
+
 ## 1. Dedicated Turso database
 
 Create/sign into a Free Turso account. Install the official Turso CLI if desired, then authenticate as the developer. On Windows use the supported CLI installation method or WSL; the application itself runs on Windows Node.
@@ -14,21 +16,21 @@ turso db tokens create carlas-kitchen-poc --expiration 30d
 
 The last command prints a secret: run it privately, store it in your password manager/secret environment, and do not paste it into Git, chat, screenshots or logs. Record the expiry and rotate it before expiry. This is a token for the dedicated database, not a Turso account administration token.
 
-Set `LIBSQL_DATABASE_URL=libsql://<dedicated-host>` and `LIBSQL_AUTH_TOKEN=<dedicated-token>` in an ignored local `.env`. Then initialize explicitly:
+Choose the **libSQL** engine (omit `--tursodb`). Set `LIBSQL_DATABASE_URL=libsql://<dedicated-host>` and `LIBSQL_AUTH_TOKEN=<dedicated-token>` in an ignored `.env.remote`. Initialize explicitly without making the development server use remote credentials:
 
 ```sh
-npm run db:init -- --remote
+node --env-file=.env.remote --import tsx scripts/bootstrap.ts --remote
 # Optional, once, to load clearly fictional examples into the test site:
-npm run db:demo -- --remote
+node --env-file=.env.remote --import tsx scripts/bootstrap.ts --remote --demo
 ```
 
 The initialization script uses the official libSQL dialect and official EmDash migrations/seed API. It refuses remote writes without `--remote` and uses conflict mode `skip`. Never upload the development SQLite file: it contains test authentication bypass users/tokens.
 
 ## 2. Dedicated Netlify Free site
 
-Create a new Free site with the Git repository, select the intended production branch, build command `npm run check && npm run build` and publish directory `dist`. `netlify.toml` records these defaults. The adapter emits its Node function under `.netlify/v1/functions/ssr/` and Netlify deployment configuration under `.netlify/v1/`.
+Create a new Free site with the Git repository, select `main` as the production branch, build command `npm run check && npm run build` and publish directory `dist`. Development continues directly on `main`. `netlify.toml` records the build defaults. The adapter emits its Node function under `.netlify/v1/functions/ssr/` and Netlify deployment configuration under `.netlify/v1/`.
 
-Use a stable `https://<chosen-name>.netlify.app` hostname for the POC. Set the environment values below before building; save secrets only in the site's environment UI with **Functions** scope. Generate a 32-byte hex encryption key privately (EmDash's `secrets generate` command can write it directly to ignored `.env`). Keep the key in a password manager and backup; don't regenerate it at each deploy.
+Use a stable `https://<chosen-name>.netlify.app` hostname for the POC. Set the environment values below before building; save secrets in the site's environment UI with values restricted to the **Production deploy context**. On Free, keep **all scopes**: selecting custom Functions/Builds scopes requires Pro/Enterprise and is unnecessary. The table describes minimum code requirements, not selectable Free-plan scopes. Generate a 32-byte hex encryption key privately (EmDash's `secrets generate` command can write it directly to ignored `.env.remote`). Keep the key in a password manager and backup; don't regenerate it at each deploy. [Official scope limitations](https://docs.netlify.com/build/environment-variables/overview/).
 
 The app does not put credentials into `astro.config.mjs` descriptors. The official adapter receives its token from `process.env` at invocation time through `src/db/runtime-libsql.ts`. Blobs use Netlify's built-in request context; no `NETLIFY_AUTH_TOKEN` is needed in application runtime.
 
@@ -38,7 +40,7 @@ The app does not put credentials into `astro.config.mjs` descriptors. The offici
 | `LIBSQL_AUTH_TOKEN` | **Not needed** | Required, secret, read/write to dedicated DB | Unset for local file | Dedicated DB token only | **Do not provide** |
 | `EMDASH_SITE_URL` | Required canonical HTTPS origin | Same origin | `http://127.0.0.1:4321` or localhost, consistently | Stable Netlify hostname | Can use preview origin; CMS is disabled anyway |
 | `EMDASH_ENCRYPTION_KEY` | Not needed | Persistent 64-hex-character secret | Optional when no plugin secrets are used | Generate once; retain securely | **Do not provide** |
-| `AWS_LAMBDA_JS_RUNTIME` | Not used by the app build | `nodejs24.x`, configure in UI then redeploy | Not used | Node 24 runtime | Node 24 runtime |
+| `AWS_LAMBDA_JS_RUNTIME` | Netlify deployment configuration: set `nodejs24.x` in UI | Selects Node 24; redeploy to apply | Not used | Node 24 runtime | Node 24 runtime |
 | `NODE_VERSION` | `24.22.1` from TOML | Runtime follows the configured Lambda version | Installed Node 24 | Pin supported Node 24 | Same |
 | `KITCHEN_WRITES` | No credentials | `enabled` normally; `disabled` blocks HTTP mutations during maintenance | `enabled` | Developer maintenance switch | `disabled` from TOML; all dynamic preview access is additionally blocked |
 | `CONTEXT`, `NETLIFY` | Set by Netlify | Platform-managed | Unset | Platform-managed | `deploy-preview` / `branch-deploy` compile the fail-closed gate |
