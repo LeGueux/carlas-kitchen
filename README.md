@@ -19,7 +19,7 @@ Open [the notebook](http://127.0.0.1:4321/) or [EmDash administration](http://12
 
 For normal setup, create the first administrator with a passkey in EmDash. For disposable local testing, EmDash provides `/_emdash/api/setup/dev-bypass?redirect=/_emdash/admin`. It creates a **development test administrator**, not the developer's real production account. This native endpoint is unavailable in production. Never migrate a development database with bypass users/tokens to production; initialize a fresh dedicated database instead.
 
-`.env` is optional for local files. To configure it, copy `.env.example`; leave the Turso token unset for a local database. Generate a private encryption key with `npx emdash secrets generate --write .env` if needed. Never commit `.env`. Production keys belong in Netlify's Functions environment. Astro telemetry is disabled by the wrapper. On Windows the local Netlify emulator's configuration is also isolated inside this checkout, rather than reading another project's account configuration.
+`.env` is optional for local files. To configure it, copy `.env.example`; leave the Turso token unset for a local database. Generate a private encryption key with `npx emdash secrets generate --write .env` if needed. Never commit `.env`. Production keys belong in Netlify's site environment UI, restricted to the Production deploy context; on Free they use all scopes. Use a separate ignored `.env.remote` for deliberate remote initialization, as explained in the first-deployment guide. Astro telemetry is disabled by the wrapper. On Windows the local Netlify emulator's configuration is also isolated inside this checkout, rather than reading another project's account configuration.
 
 The schema is applied explicitly by `db:init`. `db:demo` adds two clearly fictional recipes (five translated entries) without replacing existing content. Both use conflict mode `skip`. EmDash may also apply the embedded **schema-only** seed once to a fresh database. There is no destructive startup seed and no automatic example import on deployment.
 
@@ -49,6 +49,7 @@ To test browser photo reduction, run `node scripts/create-large-photo.mjs`, then
 
 ## Documentation
 
+- [First deployment walkthrough (start here)](docs/first-deployment.md)
 - [Architecture feasibility and official sources](docs/feasibility.md)
 - [Netlify / Turso deployment and environment matrix](docs/deployment.md)
 - [Carla's browser workflow](docs/carla-guide.md)
