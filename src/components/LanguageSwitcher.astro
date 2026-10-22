@@ -1,0 +1,14 @@
+---
+import { locales, localePath, languageNames, type Locale } from '../config/locales';
+import { ui } from '../i18n/ui';
+interface Props { locale: Locale; links?: Partial<Record<Locale, string>>; }
+const { locale, links } = Astro.props;
+---
+<nav class="languages" aria-label={ui[locale].languages}>
+  {locales.map((language) => {
+    const available = !links || !!links[language];
+    return <a href={links ? links[language] ?? `${localePath(language)}?missing=1` : localePath(language)} lang={language} hreflang={language} aria-current={language === locale ? 'page' : undefined} title={`${languageNames[language]}${available ? '' : ` — ${ui[locale].unavailable}`}`}>
+      {language === 'pt-PT' ? 'PT' : language.toUpperCase()}<span class="sr-only"> — {languageNames[language]}{available ? '' : ` (${ui[locale].unavailable})`}</span>{!available && <span aria-hidden="true">*</span>}
+    </a>;
+  })}
+</nav>

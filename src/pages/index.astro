@@ -1,0 +1,6 @@
+---
+import RecipeIndex from '../components/RecipeIndex.astro';
+import { recipeIndexData } from '../lib/recipes';
+const data = await recipeIndexData('en', Astro.url.searchParams);
+---
+<RecipeIndex locale="en" {...data} />

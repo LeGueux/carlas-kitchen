@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import { readFile } from 'node:fs/promises';
+const evidence = JSON.parse(await readFile('test-results/restart.json', 'utf8'));
+const origin = 'http://127.0.0.1:4321';
+const me = await fetch(`${origin}/_emdash/api/auth/me`, { headers: { Cookie: evidence.cookie }, signal: AbortSignal.timeout(20000) });
+assert.equal(me.status, 200);
+assert.equal((await me.json()).data.id, evidence.userId);
+assert.equal((await fetch(`${origin}/recipes/${evidence.slug}`)).status, 200);
+assert.equal((await fetch(origin + evidence.photo)).status, 200);
+console.log('PASS: session, published recipe and photo survive a complete local server restart. This is not a Netlify redeployment test.');

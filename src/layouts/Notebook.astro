@@ -1,0 +1,27 @@
+---
+import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import { localePath, type Locale } from '../config/locales';
+import { ui } from '../i18n/ui';
+import '../styles/global.css';
+interface Props { locale: Locale; title?: string; description?: string; links?: Partial<Record<Locale, string>>; }
+const { locale, title, description, links } = Astro.props;
+const copy = ui[locale];
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description ?? copy.intro} /><meta name="theme-color" content="#f8f5ed" />
+    <title>{title ? `${title} · Carla’s Kitchen` : 'Carla’s Kitchen'}</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {links && Object.entries(links).filter(([, href]) => href).map(([language, href]) => <link rel="alternate" hreflang={language} href={new URL(href!, Astro.url.origin)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{copy.skip}</a>
+    <header class="site-header shell"><a class="brand" href={localePath(locale)} aria-label="Carla’s Kitchen">
+      <svg viewBox="0 0 40 40" width="35" height="35" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 18h24v10a5 5 0 0 1-5 5H13a5 5 0 0 1-5-5V18Zm-3 0h30M16 13c-5-5 5-6 0-11m8 11c-5-5 5-6 0-11M4 21H1m38 0h-3" /></svg>
+      <span>Carla’s <em>Kitchen</em></span></a><LanguageSwitcher locale={locale} links={links} /></header>
+    <main id="main" class="shell"><slot /></main>
+    <footer class="site-footer shell"><p>Carla’s Kitchen <span aria-hidden="true">·</span> {copy.footer}</p><a href="/_emdash/admin">{copy.manage}<span aria-hidden="true"> ↗</span></a></footer>
+  </body>
+</html>

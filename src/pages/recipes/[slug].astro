@@ -1,0 +1,7 @@
+---
+import RecipeDetail from '../../components/RecipeDetail.astro';
+import { recipeDetail } from '../../lib/recipes';
+const detail = await recipeDetail('en', Astro.params.slug!, Astro.locals.user?.role);
+if (!detail) return Astro.rewrite('/404');
+---
+<RecipeDetail locale="en" {...detail} />

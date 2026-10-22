@@ -1,0 +1,24 @@
+---
+import Notebook from '../layouts/Notebook.astro';
+import { photoUrl, lines, safeSourceUrl, type Recipe } from '../lib/recipes';
+import { localePath, type Locale } from '../config/locales';
+import { ui } from '../i18n/ui';
+interface Props { locale: Locale; recipe: Recipe; privatePreview: boolean; links: Partial<Record<Locale, string>>; }
+const { locale, recipe, privatePreview, links } = Astro.props;
+const copy = ui[locale];
+const cover = photoUrl(recipe.cover_image);
+const gallery = [recipe.photo_2, recipe.photo_3].filter((value) => photoUrl(value));
+const source = safeSourceUrl(recipe.source_url);
+---
+<Notebook locale={locale} title={recipe.title} description={recipe.description} links={links}>
+  <a class="back-link" href={localePath(locale)}>← {copy.back}</a>{privatePreview && <aside class="notice">{copy.preview}</aside>}
+  <article class="recipe-detail"><header class="recipe-heading"><p class="eyebrow">{recipe.terms?.category?.map((term) => term.label).join(' · ') || copy.notebook}</p><h1>{recipe.title}</h1>{recipe.description && <p class="recipe-description">{recipe.description}</p>}</header>
+    {recipe.is_example && <aside class="example-notice"><strong>{copy.example}.</strong> {copy.exampleBody}</aside>}
+    {cover ? <figure class="recipe-cover"><img src={cover} alt={recipe.cover_image?.alt || recipe.title} width={recipe.cover_image?.width ?? 1200} height={recipe.cover_image?.height ?? 900} fetchpriority="high" />{recipe.cover_image?.caption && <figcaption>{recipe.cover_image.caption}</figcaption>}</figure> : <div class="recipe-cover photo-placeholder"><span aria-hidden="true">♧</span><span>{copy.noPhoto}</span></div>}
+    <dl class="recipe-facts"><div><dt>{copy.prep}</dt><dd>{recipe.prep_minutes ?? 0} <span>{copy.minutes}</span></dd></div><div><dt>{copy.cook}</dt><dd>{recipe.cook_minutes ?? 0} <span>{copy.minutes}</span></dd></div><div><dt>{copy.servings}</dt><dd>{recipe.servings ?? 2}</dd></div>{recipe.rating && <div><dt>{copy.rating}</dt><dd class="rating"><span aria-hidden="true">★ </span>{recipe.rating}<span> / 5</span></dd></div>}</dl>
+    <div class="recipe-body"><section class="ingredients" aria-labelledby="ingredients"><p class="eyebrow" aria-hidden="true">01 /</p><h2 id="ingredients">{copy.ingredients}</h2><ul>{lines(recipe.ingredients).map((line) => <li>{line}</li>)}</ul></section><section class="preparation" aria-labelledby="steps"><p class="eyebrow" aria-hidden="true">02 /</p><h2 id="steps">{copy.steps}</h2><ol>{lines(recipe.steps).map((line) => <li>{line}</li>)}</ol></section></div>
+    {gallery.length > 0 && <div class="recipe-gallery">{gallery.map((value) => <figure><img src={photoUrl(value)} alt={value?.alt || recipe.title} width={value?.width ?? 1200} height={value?.height ?? 900} loading="lazy" />{value?.caption && <figcaption>{value.caption}</figcaption>}</figure>)}</div>}
+    {(recipe.notes || recipe.last_cooked) && <section class="kitchen-notes"><p class="eyebrow" aria-hidden="true">✳</p><h2>{copy.notes}</h2>{recipe.notes && <p class="preserve-lines">{recipe.notes}</p>}{recipe.last_cooked && !Number.isNaN(Date.parse(recipe.last_cooked)) && <p class="last-cooked">{copy.lastCooked} <time datetime={recipe.last_cooked}>{new Intl.DateTimeFormat(locale, { dateStyle: 'long', timeZone: 'UTC' }).format(new Date(recipe.last_cooked))}</time></p>}</section>}
+    {source && <p class="source-link"><a href={source} rel="noopener noreferrer">{copy.source} ↗</a></p>}
+  </article>
+</Notebook>
