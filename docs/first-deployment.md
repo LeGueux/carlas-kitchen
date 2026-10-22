@@ -27,7 +27,7 @@ git status --short
 npm ci
 ```
 
-Use Node 24.22.1 or later within Node 24 and npm 12. The implemented POC is on `codex/carlas-kitchen-poc`; the chosen GitHub repository name is `LeGueux/carlas-kitchen`. The local checkout folder can keep its existing `carla-website` name.
+Use Node 24.22.1 or later within Node 24 and npm 12. The implementation is integrated into `main`; continue development on `main`. The chosen GitHub repository name is `LeGueux/carlas-kitchen`. The local checkout folder can keep its existing `carla-website` name.
 
 If the GitHub repository is still named `carla-website`, rename it in its **Settings → General → Repository name** field first. After GitHub confirms the rename, update the local remote:
 
@@ -36,13 +36,14 @@ git remote set-url origin git@github.com:LeGueux/carlas-kitchen.git
 git remote -v
 ```
 
-Verify this branch contains the implementation before uploading it:
+Use `main` and upload your committed changes:
 
 ```powershell
-git push -u origin codex/carlas-kitchen-poc
+git switch main
+git push origin main
 ```
 
-This is a command for you to run; this guide does not push automatically. In GitHub, verify that `astro.config.mjs`, `netlify.toml`, `src/` and `package-lock.json` appear on that branch. No merge into `main` is required for the dedicated POC: select this branch as Netlify's **production branch**. A production branch can have any name; a non-production branch deployment is deliberately blocked by this app.
+These are commands for you to run for later updates; reading this guide does not push automatically. In GitHub, verify that `astro.config.mjs`, `netlify.toml`, `src/` and `package-lock.json` appear on `main`. Select `main` as Netlify's **production branch**. Non-production branch deployments are deliberately blocked by this app.
 
 Do not upload `data/`, `.netlify/`, `test-results/`, backups or environment files. Existing local content/accounts are disposable and do not migrate to the new database.
 
@@ -107,7 +108,7 @@ In the Netlify Free dashboard, use **Add new project / Import an existing projec
 | Setting | Value |
 | --- | --- |
 | Repository | `LeGueux/carlas-kitchen` |
-| Production branch | `codex/carlas-kitchen-poc` |
+| Production branch | `main` |
 | Base directory | Empty / repository root |
 | Build command | `npm run check && npm run build` |
 | Publish directory | `dist` |
@@ -178,7 +179,7 @@ Use [Carla's guide](carla-guide.md) for recipe/photo/translation work. Code upda
 
 | Symptom | First checks |
 | --- | --- |
-| `Netlify requires a dedicated remote LIBSQL_DATABASE_URL` during build | URL is set for Production; selected production branch is the POC branch; URL starts `libsql://`. |
+| `Netlify requires a dedicated remote LIBSQL_DATABASE_URL` during build | URL is set for Production; selected production branch is `main`; URL starts `libsql://`. |
 | Published site returns temporary-unavailable 503 | Token is present/valid, remote initialization completed, environment changes were followed by a deploy. Check redacted function logs. |
 | `Deploy previews are disabled` | You opened a preview/branch deploy, or selected the wrong production branch. Use the stable production hostname. |
 | Missing recipes/schema | Initialization targeted the same database URL as Netlify. Examples require the optional `--demo` command. |

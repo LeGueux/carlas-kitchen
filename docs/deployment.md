@@ -28,7 +28,7 @@ The initialization script uses the official libSQL dialect and official EmDash m
 
 ## 2. Dedicated Netlify Free site
 
-Create a new Free site with the Git repository, select the intended production branch, build command `npm run check && npm run build` and publish directory `dist`. `netlify.toml` records these defaults. The adapter emits its Node function under `.netlify/v1/functions/ssr/` and Netlify deployment configuration under `.netlify/v1/`.
+Create a new Free site with the Git repository, select `main` as the production branch, build command `npm run check && npm run build` and publish directory `dist`. Development continues directly on `main`. `netlify.toml` records the build defaults. The adapter emits its Node function under `.netlify/v1/functions/ssr/` and Netlify deployment configuration under `.netlify/v1/`.
 
 Use a stable `https://<chosen-name>.netlify.app` hostname for the POC. Set the environment values below before building; save secrets in the site's environment UI with values restricted to the **Production deploy context**. On Free, keep **all scopes**: selecting custom Functions/Builds scopes requires Pro/Enterprise and is unnecessary. The table describes minimum code requirements, not selectable Free-plan scopes. Generate a 32-byte hex encryption key privately (EmDash's `secrets generate` command can write it directly to ignored `.env.remote`). Keep the key in a password manager and backup; don't regenerate it at each deploy. [Official scope limitations](https://docs.netlify.com/build/environment-variables/overview/).
 
