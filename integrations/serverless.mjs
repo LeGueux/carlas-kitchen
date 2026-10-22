@@ -10,7 +10,8 @@ export function patchAdminUploads(source, prepareModule) {
 }
 
 // EmDash 1.3.1 has no public scheduler-disable or upload-preprocessor option.
-// Keep these two version-sensitive adaptations together and fail closed on upgrades.
+// Keep the serverless adaptations here; localized labels are in admin-labels.mjs.
+// All private compatibility seams are version-checked and fail closed on upgrades.
 export function serverlessCompatibility() {
   return {
     name: 'kitchen-serverless-compatibility',

@@ -9,7 +9,7 @@ The developer gives you the notebook address and an invitation link. You only ne
 3. In account settings, add a **second passkey on an independent device or security key**. Test it before relying on it. A second name for the same synced credential is not an independent recovery method.
 4. Do not rely on email login: this POC has no email delivery service. If you lose all passkeys, contact the developer. There is no working emailed recovery link unless the developer later configures and tests email.
 
-The administration can be shown in English, French or **Português (Brasil)** using its language control. The recipe language is a separate setting; choose Brazilian Portuguese (`pt-BR`) for Carla's Portuguese recipes. Some recipe field labels remain in English in this POC. “Editor” lets you manage recipes, photos and categories, but not infrastructure or CMS-wide settings.
+The administration can be shown in English, French or **Português (Brasil)** using its language control. The recipe menu and form labels follow this choice: **Recipes / Recipe**, **Recettes / Recette**, or **Receitas / Receita**. The recipe language is a separate setting; choose Brazilian Portuguese (`pt-BR`) for Carla's Portuguese recipes. Native EmDash screens may still contain untranslated upstream interface strings. “Editor” lets you manage recipes, photos and categories, but not infrastructure or CMS-wide settings.
 
 ## Add a recipe
 

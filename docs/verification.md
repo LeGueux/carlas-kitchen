@@ -69,6 +69,14 @@ After restart verification, `node scripts/clean-local-tests.mjs` moved 11 dispos
 - Local validation: 14 targeted tests passed, including migration backup failure, transaction rollback, mixed-locale refusal, idempotence and legacy redirects. TypeScript checked 45 files with zero errors/warnings/hints; the Netlify build succeeded with the known admin chunk warning. HTTP acceptance against a separate local database with the two freshly seeded examples passed, including BR text, linked translations, missing translation, filtering and redirects.
 - Reproduce the language checks with `node scripts/check-locale-deployment.mjs https://carlas-kitchen.netlify.app/` after the matching deployment. The same script defaults to localhost. Detailed data-migration commands and limits are in [the content model](content-model.md#existing-portuguese-data).
 
+## Recipe administration labels — 2026-10-22
+
+- EmDash's native collection/field definitions have a single schema label. Added a presentation-only, version-pinned compatibility patch so the recipe menu and all 15 recipe fields follow the administration's French or Brazilian Portuguese language. No production database migration or content edit is required.
+- `npm test`: 17 passing tests, including full seeded field-label coverage, preservation of customized labels/field metadata and the shared raw manifest, repeated patch installation and upstream drift rejection. `npm run check`: 49 files, zero errors/warnings/hints. `npm run build`: successful Netlify Node build; existing admin chunk warning remains.
+- In the actual local EmDash administration, using the native development account against the separate `brazilian-verification.db`, verified “Recettes” in the sidebar and list, the translated creation form, and French fields on the existing fictional tomato recipe. Native Settings language switching FR → pt-BR → FR immediately changed the recipe label to “Receitas” and back without a reload. No production account or recipe was changed.
+- The administration language remains independent of the selected content language. Taxonomy labels follow the selected content locale through EmDash's native definitions. The Content Types builder retains canonical schema labels. Some upstream text remains partial, including Kumo's English “(optional)” input markers and native generic French grammatical agreement; this change does not claim complete upstream catalog coverage.
+- Authenticated production UI verification still requires the developer's passkey session. Local development sign-in is never used on the deployed site.
+
 ## Remaining external acceptance
 
 - [x] Create the dedicated Free Netlify site and Turso DB (performed by the developer).
