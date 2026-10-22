@@ -23,8 +23,9 @@
 .languages { display: flex; gap: 4px; font-size: 12px; font-weight: 600; letter-spacing: .07em; }
 .languages a { display: grid; place-items: center; padding: 8px; min-width: 40px; min-height: 44px; border-radius: 50%; text-decoration: none; position: relative; }
 .languages a[aria-current='page'] { background: #e3e8d9; color: #344d30; }
-.languages a:hover { text-decoration: underline; }
-.languages a > span[aria-hidden] { position: absolute; right: 0; top: 0; }
+.languages a:hover { background: #eceee3; }
+.language-flag { display: block; flex-shrink: 0; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgb(48 60 44 / .12), 0 1px 2px rgb(48 60 44 / .1); }
+.languages .language-missing { position: absolute; right: 0; top: 0; }
 .intro { padding: 66px 0 54px; display: grid; grid-template-columns: 1.7fr 1fr; gap: 70px; align-items: end; }
 .eyebrow { text-transform: uppercase; font-size: 10px; font-weight: 600; letter-spacing: .16em; color: #59604f; margin-bottom: 18px; }
 .eyebrow > span { font-size: 17px; margin-right: 8px; vertical-align: -1px; }
@@ -109,11 +110,11 @@ figcaption { font-size: 12px; color: #6e7663; margin-top: 8px; }
 .skip-link:focus { top: 12px; }
 @media(max-width: 700px) {
   .shell { padding-inline: 22px; }
-  .site-header { padding-block: 20px; gap: 6px; }
+  .site-header { padding-block: 20px; gap: 6px; flex-wrap: wrap; }
   .brand { font-size: 23px; gap: 8px; }
   .brand svg { width: 25px; height: 29px; }
-  .languages { gap: 0; font-size: 10px; }
-  .languages a { min-width: 32px; padding: 7px; }
+  .languages { gap: 0; font-size: 10px; margin-left: auto; }
+  .languages a { min-width: 35px; padding: 4px; }
   .intro { grid-template-columns: 1fr; gap: 22px; padding: 40px 0 34px; }
   .intro h1 { font-size: clamp(38px,10vw,54px); }
   .intro-note { max-width: 310px; font-size: 13px; }
