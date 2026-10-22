@@ -27,7 +27,16 @@ git status --short
 npm ci
 ```
 
-Use Node 24.22.1 or later within Node 24 and npm 12. The implemented POC is on `codex/carlas-kitchen-poc`; the remote is already `git@github.com:LeGueux/carla-website.git`. Verify this branch contains the implementation before uploading it:
+Use Node 24.22.1 or later within Node 24 and npm 12. The implemented POC is on `codex/carlas-kitchen-poc`; the chosen GitHub repository name is `LeGueux/carlas-kitchen`. The local checkout folder can keep its existing `carla-website` name.
+
+If the GitHub repository is still named `carla-website`, rename it in its **Settings → General → Repository name** field first. After GitHub confirms the rename, update the local remote:
+
+```powershell
+git remote set-url origin git@github.com:LeGueux/carlas-kitchen.git
+git remote -v
+```
+
+Verify this branch contains the implementation before uploading it:
 
 ```powershell
 git push -u origin codex/carlas-kitchen-poc
@@ -93,11 +102,11 @@ Both scripts use conflict mode `skip`. Do not add these commands to Netlify's bu
 
 ## 4. Import the repository into Netlify
 
-In the Netlify Free dashboard, use **Add new project / Import an existing project** (wording may vary), choose GitHub and authorize access to the `carla-website` repository. Configure:
+In the Netlify Free dashboard, use **Add new project / Import an existing project** (wording may vary), choose GitHub and authorize access to the `carlas-kitchen` repository. Configure:
 
 | Setting | Value |
 | --- | --- |
-| Repository | `LeGueux/carla-website` |
+| Repository | `LeGueux/carlas-kitchen` |
 | Production branch | `codex/carlas-kitchen-poc` |
 | Base directory | Empty / repository root |
 | Build command | `npm run check && npm run build` |
@@ -108,7 +117,7 @@ The build settings are already recorded in `netlify.toml`. Use Git import for th
 
 If the creation flow offers a way to defer the first deploy, configure the variables first. If it starts immediately, the initial build can fail because the Turso URL is missing; add the variables and retry. Do not change the database guard to work around that failure.
 
-Choose the permanent POC project name and record its stable `https://YOUR-SITE.netlify.app` hostname. Use that address for authentication, rather than a deploy permalink or preview hostname. Settle the name before registering passkeys.
+Choose `carlas-kitchen` as the Netlify project name if available, and record the actual stable `https://YOUR-SITE.netlify.app` hostname assigned to it. GitHub repository names and Netlify hostname availability are independent. Use the stable address for authentication, rather than a deploy permalink or preview hostname. Settle the name before registering passkeys.
 
 ## 5. Add the Netlify environment variables
 
