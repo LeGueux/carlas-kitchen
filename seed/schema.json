@@ -29,6 +29,6 @@
   "taxonomies": [
     { "id": "categories-en", "name": "category", "label": "Categories", "labelSingular": "Category", "hierarchical": false, "collections": ["recipes"], "locale": "en" },
     { "id": "categories-fr", "translationOf": "categories-en", "name": "category", "label": "Catégories", "labelSingular": "Catégorie", "locale": "fr" },
-    { "id": "categories-pt", "translationOf": "categories-en", "name": "category", "label": "Categorias", "labelSingular": "Categoria", "locale": "pt-PT" }
+    { "id": "categories-pt", "translationOf": "categories-en", "name": "category", "label": "Categorias", "labelSingular": "Categoria", "locale": "pt-BR" }
   ]
 }

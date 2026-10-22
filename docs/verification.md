@@ -1,6 +1,6 @@
 # Verification ledger
 
-Date: **2026-10-21**. Environment: Windows, Node 24.22.1, npm 12.2.1. Dedicated local libSQL file and Netlify's local Blobs emulator. **No Netlify URL, remote Turso database, paid service or real Carla/developer passkey account was created.** The user explicitly chose local completion and documented external steps.
+Initial verification: **2026-10-21**. Environment: Windows, Node 24.22.1, npm 12.2.1. The initial delivery used a dedicated local libSQL file and Netlify's local Blobs emulator. At that point no Netlify URL, remote database or real account had been created. The table below records that initial local work; later remote progress is recorded separately.
 
 ## Executed locally
 
@@ -60,10 +60,20 @@ After restart verification, `node scripts/clean-local-tests.mjs` moved 11 dispos
 - Free credits can pause the site. Blobs is currently documented as beta. No payment method was added or paid service activated.
 - `npm audit` reports **8 high-severity transitive tooling findings**, rooted in `braces` / `micromatch` / `fast-glob` through Netlify's development/bundling tools (GHSA-vfj7-8cjw-p6xm). The installed stable Netlify adapter has no compatible automated fix reported; npm's suggested adapter downgrade is incompatible with Astro 7 and was not applied. No arbitrary user-controlled glob patterns are accepted by this app. Recheck the upstream tooling before broader/public production use. This is an observed dependency limitation, not a clean-audit claim.
 
-## Not executed: external acceptance
+## Remote progress and Brazilian Portuguese update — 2026-10-22
 
-- [ ] Create the dedicated Free Netlify site and Turso DB without billing activation.
-- [ ] Apply/check migrations against remote Turso and establish the first real Admin.
+- The developer created the dedicated Free Turso database, initialized it explicitly, published [the Netlify site](https://carlas-kitchen.netlify.app/) and completed native Admin setup. No payment activation was performed by the agent.
+- Remote GET requests to `/`, `/fr/`, `/pt-PT/` and `/_emdash/admin` returned 200 with private no-store headers before the language change. The admin rendered its native setup wizard. The developer subsequently navigated the authenticated settings/users pages. A cold-start session test is still outstanding.
+- Portuguese is now Brazilian Portuguese (`pt-BR`), including public copy, examples, native admin allowlist, category seed, language metadata and links. Former `pt-PT` URLs have permanent redirects preserving slugs and queries. Earlier `pt-PT` results above remain historical evidence, not claims about the new locale.
+- Remote preflight found zero recipes/terms and exactly one `pt-PT` category definition. The explicit migration changed that one locale row in a transaction after saving its private pre-change snapshot under ignored `backups/`. No account, credential, recipe text, media or translation-group ID was changed.
+- Local validation: 14 targeted tests passed, including migration backup failure, transaction rollback, mixed-locale refusal, idempotence and legacy redirects. TypeScript checked 45 files with zero errors/warnings/hints; the Netlify build succeeded with the known admin chunk warning. HTTP acceptance against a separate local database with the two freshly seeded examples passed, including BR text, linked translations, missing translation, filtering and redirects.
+- Reproduce the language checks with `node scripts/check-locale-deployment.mjs https://carlas-kitchen.netlify.app/` after the matching deployment. The same script defaults to localhost. Detailed data-migration commands and limits are in [the content model](content-model.md#existing-portuguese-data).
+
+## Remaining external acceptance
+
+- [x] Create the dedicated Free Netlify site and Turso DB (performed by the developer).
+- [x] Initialize remote Turso and establish the first real Admin (performed by the developer).
+- [ ] Run the official core migration status check against the deployed remote configuration after future upgrades.
 - [ ] Register/test two independent passkeys on the actual stable HTTPS hostname; test logout/re-login on Carla's real phone.
 - [ ] Invite Carla via a manually copied native invitation link as Editor; verify her real session and denied admin permissions.
 - [ ] Repeat the one-recipe/three-photo vertical slice using the deployed Node function and real site-wide Blobs context.
@@ -73,4 +83,4 @@ After restart verification, `node scripts/clean-local-tests.mjs` moved 11 dispos
 - [ ] Execute complete SQL/media export and restoration to isolated resources, then the original-hostname passkey verification.
 - [ ] Exercise iOS/Android keyboard, passkey sync, camera/file selection, alt text and the independent recovery passkey with Carla.
 
-Deployment URL: **none**. Real-account creation, remote backups/restores, remote cold starts and redeployment persistence remain unverified. Follow [deployment](deployment.md) to complete them without changing host, CMS or storage.
+Deployment URL: **https://carlas-kitchen.netlify.app/**. Real Admin setup was completed by the developer. Remote full backups/restores, cold starts, media acceptance and redeployment persistence remain unverified. Follow [deployment](deployment.md) to complete them without changing host, CMS or storage.

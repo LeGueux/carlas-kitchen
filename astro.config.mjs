@@ -46,7 +46,7 @@ export default defineConfig({
       updateCheck: false,
       plugins: [],
       sandboxed: [],
-      admin: { siteName: "Carla’s Kitchen", locales: ['en', 'fr', 'pt-PT'] },
+      admin: { siteName: "Carla’s Kitchen", locales: [...locales] },
     }),
   ],
   vite: {

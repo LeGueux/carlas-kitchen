@@ -1,16 +1,20 @@
 import { defineMiddleware } from 'astro:middleware';
+import { brazilianPortugueseRedirect } from '../config/locales';
 
 function unavailable(api: boolean, message = 'The recipe notebook is temporarily unavailable. Please try again shortly.') {
   return api
     ? Response.json({ success: false, error: { code: 'SERVICE_UNAVAILABLE', message } }, { status: 503 })
-    : new Response(`<!doctype html><html lang="en"><meta name="viewport" content="width=device-width"><title>Carla’s Kitchen</title><body style="font:1.1rem system-ui;max-width:40rem;margin:15vh auto;padding:2rem;background:#faf7ef;color:#303c2c"><h1>Carla’s Kitchen</h1><p>${message}</p><p>Le carnet est temporairement indisponible. Réessayez dans un instant.</p><p>O caderno está temporariamente indisponível. Tente novamente dentro de momentos.</p><a href="/">Try again / Réessayer / Tentar novamente</a></body></html>`, { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
+    : new Response(`<!doctype html><html lang="en"><meta name="viewport" content="width=device-width"><title>Carla’s Kitchen</title><body style="font:1.1rem system-ui;max-width:40rem;margin:15vh auto;padding:2rem;background:#faf7ef;color:#303c2c"><h1>Carla’s Kitchen</h1><p>${message}</p><p>Le carnet est temporairement indisponible. Réessayez dans un instant.</p><p lang="pt-BR">O caderno está temporariamente indisponível. Tente novamente em instantes.</p><a href="/">Try again / Réessayer / Tentar novamente</a></body></html>`, { status: 503, headers: { 'Content-Type': 'text/html; charset=utf-8' } });
 }
 
 export const onRequest = defineMiddleware(async (context, next) => {
   const api = context.url.pathname.startsWith('/_emdash/api/');
   let response: Response;
+  const legacyPortuguesePath = brazilianPortugueseRedirect(context.url);
   if (__KITCHEN_PREVIEW__) {
     response = unavailable(api, 'Deploy previews are disabled to protect the dedicated production database and media.');
+  } else if (legacyPortuguesePath && ['GET', 'HEAD'].includes(context.request.method)) {
+    response = context.redirect(legacyPortuguesePath, 308);
   } else if (context.url.pathname === '/_image') {
     // EmDash admin requests thumbnails even with image optimization disabled.
     // Redirect only local media back through its visibility gate; never fetch arbitrary URLs.

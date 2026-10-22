@@ -20,13 +20,13 @@ export const ui: Record<Locale, Copy> = {
     languages: 'Choisir une langue', unavailable: 'indisponible', missing: 'Cette recette n’est pas publiée dans cette langue. Choisissez une autre recette ci-dessous ou revenez à une langue disponible.',
     manage: 'Gérer les recettes', footer: 'Un petit carnet de bonnes choses.', skip: 'Aller aux recettes', count: 'recettes', notFound: 'Cette page s’est échappée du carnet.', notFoundBody: 'La recette a peut-être changé d’adresse, ou elle est encore au brouillon.', home: 'Ouvrir le carnet', preview: 'Aperçu privé — modifications non publiées',
   },
-  'pt-PT': {
-    notebook: 'Um caderno pessoal de receitas', hero: 'Boa comida.\nPara guardar.', intro: 'Receitas a que apetece voltar. Algumas notas de cozinha. E sempre espaço para uma nova ideia.',
-    recipes: 'As receitas do caderno', all: 'Todas as receitas', search: 'Pesquisar pelo título', searchHint: 'Algo bom para cozinhar…', category: 'Categoria', filter: 'Encontrar uma receita', clear: 'Limpar os filtros',
-    empty: 'Uma página ainda em branco.', emptyBody: 'Ainda não há receitas com estes critérios. Experimente outro título ou outra categoria.', noPhoto: 'Uma fotografia terá aqui o seu lugar',
-    example: 'Exemplo fictício', exampleBody: 'Esta receita de demonstração usa uma ilustração de exemplo. A classificação e as notas são fictícias, não são da Carla.',
-    back: 'Voltar ao caderno', prep: 'Preparação', cook: 'Cozedura', servings: 'Doses', minutes: 'min', ingredients: 'O que vai precisar', steps: 'Vamos cozinhar', notes: 'Notas de cozinha', rating: 'Classificação pessoal', lastCooked: 'Última vez que foi preparada', source: 'Ver a fonte original',
+  'pt-BR': {
+    notebook: 'Um caderno pessoal de receitas', hero: 'Boa comida.\nPara guardar.', intro: 'Receitas que dão vontade de fazer de novo. Algumas anotações de cozinha. E sempre espaço para uma nova ideia.',
+    recipes: 'As receitas do caderno', all: 'Todas as receitas', search: 'Buscar pelo título', searchHint: 'Que tal preparar algo gostoso?', category: 'Categoria', filter: 'Encontrar uma receita', clear: 'Limpar filtros',
+    empty: 'Uma página ainda em branco.', emptyBody: 'Nenhuma receita encontrada. Tente outro título ou outra categoria.', noPhoto: 'Uma foto vai aparecer aqui',
+    example: 'Exemplo fictício', exampleBody: 'Esta receita de demonstração usa uma ilustração de exemplo. A nota e as anotações são fictícias, não são da Carla.',
+    back: 'Voltar ao caderno', prep: 'Preparo', cook: 'Cozimento', servings: 'Porções', minutes: 'min', ingredients: 'O que você vai precisar', steps: 'Vamos cozinhar', notes: 'Anotações da cozinha', rating: 'Nota pessoal', lastCooked: 'Último preparo', source: 'Ver a fonte original',
     languages: 'Escolher o idioma', unavailable: 'indisponível', missing: 'Esta receita não está publicada neste idioma. Escolha outra receita abaixo ou volte a um idioma disponível.',
-    manage: 'Gerir receitas', footer: 'Um pequeno caderno de coisas boas.', skip: 'Ir para as receitas', count: 'receitas', notFound: 'Esta página escapou do caderno.', notFoundBody: 'A receita pode ter mudado de endereço ou ainda ser um rascunho.', home: 'Abrir o caderno', preview: 'Pré-visualização privada — alterações não publicadas',
+    manage: 'Gerenciar receitas', footer: 'Um pequeno caderno de coisas boas.', skip: 'Pular para as receitas', count: 'receitas', notFound: 'Esta página escapou do caderno.', notFoundBody: 'A receita pode ter mudado de endereço ou ainda ser um rascunho.', home: 'Abrir o caderno', preview: 'Prévia privada — alterações não publicadas',
   },
 };

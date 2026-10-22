@@ -2,7 +2,9 @@
 
 A functional Astro / EmDash proof of concept for a personal, multilingual recipe notebook. The public site is server rendered; Carla edits in the native EmDash administration. No custom CMS, visitor accounts, paid translation API, R2, VPS or unrelated service is used.
 
-**Delivery status:** local implementation and validation; no Netlify deployment or remote Turso test has been performed. The user chose local completion. See [verification](docs/verification.md) for evidence and remaining acceptance work.
+Languages: English (`en`), French (`fr`) and Brazilian Portuguese (`pt-BR`). The former Portuguese variant has an explicit [data migration](docs/content-model.md#existing-portuguese-data) and redirects preserving existing recipe slugs.
+
+**Delivery status:** the POC is published at [carlas-kitchen.netlify.app](https://carlas-kitchen.netlify.app/), with a dedicated Turso database initialized by the developer. Public SSR routes and the native setup screen were checked remotely; the developer completed real Admin setup. Remote media uploads, cold starts and redeployment persistence still need acceptance testing. See [verification](docs/verification.md) for evidence and remaining work.
 
 ## Start locally
 

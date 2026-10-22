@@ -22,9 +22,26 @@ EmDash 1.3.1 synchronizes fields marked `translatable: false` across linked entr
 
 ## Locales and URLs
 
-The explicit assumption is English (`en`, default), French (`fr`) and European Portuguese (`pt-PT`). Change `src/config/locales.ts`, `src/i18n/ui.ts`, the admin locale allowlist and taxonomy seed together when changing languages. Existing translated database content needs an explicit migration/review, not just a config edit.
+The configured languages are English (`en`, default), French (`fr`) and **Brazilian Portuguese (`pt-BR`)**, because Carla is Brazilian. Public copy, example text and the native admin language catalog use the Brazilian variant. The admin allowlist is derived from `src/config/locales.ts`. Update that list, `src/i18n/ui.ts` and taxonomy seeds together when changing languages. Existing translated database content needs an explicit migration/review, not just a config edit.
 
-Public paths are `/`, `/recipes/<english-slug>`, `/fr/`, `/fr/recipes/<french-slug>`, `/pt-PT/` and `/pt-PT/recipes/<portuguese-slug>`. All variants are not prefixed because EmDash's injected administration breaks when Astro prefixes the default locale. Native Astro routing remains enabled with its default prefix-other-locales strategy.
+Public paths are `/`, `/recipes/<english-slug>`, `/fr/`, `/fr/recipes/<french-slug>`, `/pt-BR/` and `/pt-BR/recipes/<portuguese-slug>`. Former `/pt-PT/` paths redirect permanently to `/pt-BR/`, retaining the recipe slug and query. Existing slugs are not automatically translated or renamed. All variants are not prefixed because EmDash's injected administration breaks when Astro prefixes the default locale. Native Astro routing remains enabled with its default prefix-other-locales strategy.
+
+### Existing Portuguese data
+
+`scripts/migrate-portuguese.ts` is an explicit, one-time locale migration. It changes only `locale` columns from `pt-PT` to `pt-BR`, retaining row IDs, translation groups, slugs, publication state, revisions and media references. It does not translate user-authored recipe text. Review any pre-existing Portuguese editorial content separately. The initial deployed database had no recipes/terms and only one Portuguese category definition.
+
+From Bash, inspect first, then apply deliberately:
+
+```bash
+# Local file database:
+npm run db:portuguese
+npm run db:portuguese -- --apply
+# Dedicated remote database, using the ignored developer environment:
+node --env-file=.env.remote --import tsx scripts/migrate-portuguese.ts --remote
+node --env-file=.env.remote --import tsx scripts/migrate-portuguese.ts --remote --apply
+```
+
+Writes require `--apply`; remote access requires `--remote`. The migration takes a transaction-consistent private snapshot of affected rows under ignored `backups/` before writing. Any backup/update failure rolls back; a repeated run changes zero rows. Mixed `pt-PT` and `pt-BR` data is refused for manual review rather than merged. This row snapshot is not a complete database backup; use [the backup procedure](backup-restore.md) for full recovery. No migration runs during requests, startup or deploy. Do not re-import seeds to migrate an existing database.
 
 Each translation is an independent native entry with its own slug, draft/published status and revisions. The language switcher queries the translation group, then includes **only published** links. A missing language links to that language's collection with an explicit notice, not to invented translated text. No content fallback chain is configured; a missing localized recipe URL returns 404. Draft titles/slugs are never rendered in missing-language links. Photos can be public if any language using them is published.
 

@@ -12,7 +12,7 @@ async function api(path, method = 'GET') {
 }
 await api('/auth/dev-bypass', 'POST');
 let count = 0;
-for (const locale of ['en', 'fr', 'pt-PT']) {
+for (const locale of ['en', 'fr', 'pt-BR']) {
   const result = await api(`/content/recipes?locale=${locale}&limit=100`);
   for (const item of result.items) {
     if (/^example-(?:technical|linked)-\d+(?:-fr)?$/.test(item.slug ?? '') || item.slug === 'mobile-technical-example') {

@@ -67,21 +67,21 @@
       "collections": [
         "recipes"
       ],
-      "locale": "pt-PT",
+      "locale": "pt-BR",
       "translationOf": "categories-en",
       "terms": [
         {
           "id": "term-pt-0",
           "slug": "dia-a-dia",
           "label": "Dia a dia",
-          "locale": "pt-PT",
+          "locale": "pt-BR",
           "translationOf": "term-en-0"
         },
         {
           "id": "term-pt-1",
           "slug": "doces",
           "label": "Doces",
-          "locale": "pt-PT",
+          "locale": "pt-BR",
           "translationOf": "term-en-1"
         }
       ]
@@ -156,7 +156,7 @@
         "id": "tomato-pt",
         "translationOf": "tomato-en",
         "slug": "exemplo-tostas-tomate-assado",
-        "locale": "pt-PT",
+        "locale": "pt-BR",
         "status": "published",
         "data": {
           "prep_minutes": 10,
@@ -172,11 +172,11 @@
             "height": 900,
             "alt": "Illustrated tomato placeholder — fictional example"
           },
-          "title": "Tostas de tomate assado",
-          "description": "Um exemplo fictício: tomate macio, pão estaladiço e um fio de azeite.",
-          "ingredients": "400 g de tomate-cereja\n2 fatias de pão\n2 colheres de sopa de azeite\n1 pitada de sal\nAlgumas folhas de manjericão",
-          "steps": "Aquecer o forno a 200 °C.\nColocar o tomate num tabuleiro pequeno com o azeite e o sal. Assar durante 25 minutos.\nTorrar o pão, colocar o tomate por cima e terminar com o manjericão.",
-          "notes": "Nota de exemplo, não é uma opinião da Carla: experimentar uma fatia de pão mais grossa da próxima vez."
+          "title": "Torradas com tomate assado",
+          "description": "Um exemplo fictício: tomates macios, pão crocante e um fio de azeite.",
+          "ingredients": "400 g de tomates-cereja\n2 fatias de pão\n2 colheres de sopa de azeite\n1 pitada de sal\nAlgumas folhas de manjericão",
+          "steps": "Preaqueça o forno a 200 °C.\nColoque os tomates em uma assadeira pequena com o azeite e o sal. Asse por 25 minutos.\nToste o pão, distribua os tomates por cima e finalize com o manjericão.",
+          "notes": "Anotação de exemplo, não é uma avaliação da Carla: usar uma fatia de pão mais grossa na próxima vez."
         },
         "taxonomies": {
           "category": [

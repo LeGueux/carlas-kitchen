@@ -20,7 +20,8 @@
     "db:init": "node --import tsx scripts/bootstrap.ts",
     "db:demo": "node --import tsx scripts/bootstrap.ts --demo",
     "db:migrate": "emdash migrate",
-    "db:check": "emdash migrate --check"
+    "db:check": "emdash migrate --check",
+    "db:portuguese": "node --import tsx scripts/migrate-portuguese.ts"
   },
   "dependencies": {
     "@astrojs/netlify": "8.2.10",

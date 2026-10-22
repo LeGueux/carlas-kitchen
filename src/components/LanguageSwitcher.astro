@@ -8,7 +8,7 @@ const { locale, links } = Astro.props;
   {locales.map((language) => {
     const available = !links || !!links[language];
     return <a href={links ? links[language] ?? `${localePath(language)}?missing=1` : localePath(language)} lang={language} hreflang={language} aria-current={language === locale ? 'page' : undefined} title={`${languageNames[language]}${available ? '' : ` — ${ui[locale].unavailable}`}`}>
-      {language === 'pt-PT' ? 'PT' : language.toUpperCase()}<span class="sr-only"> — {languageNames[language]}{available ? '' : ` (${ui[locale].unavailable})`}</span>{!available && <span aria-hidden="true">*</span>}
+      {language.toUpperCase()}<span class="sr-only"> — {languageNames[language]}{available ? '' : ` (${ui[locale].unavailable})`}</span>{!available && <span aria-hidden="true">*</span>}
     </a>;
   })}
 </nav>
