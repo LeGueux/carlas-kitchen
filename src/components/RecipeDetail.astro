@@ -1,4 +1,5 @@
 ---
+import RecipeTags from './RecipeTags.astro';
 import Notebook from '../layouts/Notebook.astro';
 import { photoUrl, lines, safeSourceUrl, type Recipe } from '../lib/recipes';
 import { localePath, type Locale } from '../config/locales';
@@ -12,7 +13,7 @@ const source = safeSourceUrl(recipe.source_url);
 ---
 <Notebook locale={locale} title={recipe.title} description={recipe.description} links={links}>
   <a class="back-link" href={localePath(locale)}>← {copy.back}</a>{privatePreview && <aside class="notice">{copy.preview}</aside>}
-  <article class="recipe-detail"><header class="recipe-heading"><p class="eyebrow">{recipe.terms?.category?.map((term) => term.label).join(' · ') || copy.notebook}</p><h1>{recipe.title}</h1>{recipe.description && <p class="recipe-description">{recipe.description}</p>}</header>
+  <article class="recipe-detail"><header class="recipe-heading"><p class="eyebrow">{recipe.terms?.category?.map((term) => term.label).join(' · ') || copy.notebook}</p><h1>{recipe.title}</h1>{recipe.description && <p class="recipe-description">{recipe.description}</p>}<RecipeTags locale={locale} terms={recipe.terms?.tag} /></header>
     {recipe.is_example && <aside class="example-notice"><strong>{copy.example}.</strong> {copy.exampleBody}</aside>}
     {cover ? <figure class="recipe-cover"><img src={cover} alt={recipe.cover_image?.alt || recipe.title} width={recipe.cover_image?.width ?? 1200} height={recipe.cover_image?.height ?? 900} fetchpriority="high" />{recipe.cover_image?.caption && <figcaption>{recipe.cover_image.caption}</figcaption>}</figure> : <div class="recipe-cover photo-placeholder"><span aria-hidden="true">♧</span><span>{copy.noPhoto}</span></div>}
     <dl class="recipe-facts"><div><dt>{copy.prep}</dt><dd>{recipe.prep_minutes ?? 0} <span>{copy.minutes}</span></dd></div><div><dt>{copy.cook}</dt><dd>{recipe.cook_minutes ?? 0} <span>{copy.minutes}</span></dd></div><div><dt>{copy.servings}</dt><dd>{recipe.servings ?? 2}</dd></div>{recipe.rating && <div><dt>{copy.rating}</dt><dd class="rating"><span aria-hidden="true">★ </span>{recipe.rating}<span> / 5</span></dd></div>}</dl>

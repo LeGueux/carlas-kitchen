@@ -85,6 +85,67 @@
           "translationOf": "term-en-1"
         }
       ]
+    },
+    {
+      "id": "example-tags-en",
+      "name": "tag",
+      "label": "Tags",
+      "labelSingular": "Tag",
+      "hierarchical": false,
+      "collections": [
+        "recipes"
+      ],
+      "locale": "en",
+      "terms": [
+        {
+          "id": "example-5min-en",
+          "slug": "5-min",
+          "label": "5 min",
+          "locale": "en"
+        }
+      ]
+    },
+    {
+      "id": "example-tags-fr",
+      "name": "tag",
+      "label": "Étiquettes",
+      "labelSingular": "Étiquette",
+      "hierarchical": false,
+      "collections": [
+        "recipes"
+      ],
+      "locale": "fr",
+      "terms": [
+        {
+          "id": "example-5min-fr",
+          "slug": "5-min",
+          "label": "5 min",
+          "locale": "fr",
+          "translationOf": "example-5min-en"
+        }
+      ],
+      "translationOf": "example-tags-en"
+    },
+    {
+      "id": "example-tags-pt-BR",
+      "name": "tag",
+      "label": "Etiquetas",
+      "labelSingular": "Etiqueta",
+      "hierarchical": false,
+      "collections": [
+        "recipes"
+      ],
+      "locale": "pt-BR",
+      "terms": [
+        {
+          "id": "example-5min-pt-BR",
+          "slug": "5-min",
+          "label": "5 min",
+          "locale": "pt-BR",
+          "translationOf": "example-5min-en"
+        }
+      ],
+      "translationOf": "example-tags-en"
     }
   ],
   "content": {
@@ -212,6 +273,9 @@
         "taxonomies": {
           "category": [
             "sweet"
+          ],
+          "tag": [
+            "5-min"
           ]
         }
       },
@@ -244,6 +308,9 @@
         "taxonomies": {
           "category": [
             "douceurs"
+          ],
+          "tag": [
+            "5-min"
           ]
         }
       }

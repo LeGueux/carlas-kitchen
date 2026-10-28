@@ -36,3 +36,7 @@ Use **Publish now** for immediate publication. Do not use scheduled publishing i
 The supplied recipes are explicitly marked fictional examples; their ratings and notes are not yours. Create your own recipe with the fictional-example switch off. You can leave a recipe without photos or a personal rating.
 
 If saving/uploading reports that the service is unavailable, keep your text in the editor, wait briefly and retry. Do not repeatedly tap Publish or Upload. Contact the developer if it persists. The Free hosting plan can pause when its monthly usage budget is exhausted.
+
+## Tags
+
+In a recipe's Settings, use Tags / Étiquettes / Etiquetas for details such as ingredients or cooking methods. Create terms from the chooser, as for categories, and provide their translations in Taxonomies. Tags appear with a small tag icon on recipe cards and recipe pages. Clicking one opens the notebook filtered by that tag. The tag filter can be combined with category and title search; “All tags” removes only the tag filter. Terms without a translation in the selected language are not displayed there.

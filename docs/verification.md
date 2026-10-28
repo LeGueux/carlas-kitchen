@@ -92,3 +92,11 @@ After restart verification, `node scripts/clean-local-tests.mjs` moved 11 dispos
 - [ ] Exercise iOS/Android keyboard, passkey sync, camera/file selection, alt text and the independent recovery passkey with Carla.
 
 Deployment URL: **https://carlas-kitchen.netlify.app/**. Real Admin setup was completed by the developer. Remote full backups/restores, cold starts, media acceptance and redeployment persistence remain unverified. Follow [deployment](deployment.md) to complete them without changing host, CMS or storage.
+
+## 2026-10-28: notebook header, search focus and recipe tags
+
+- Replaced the decorative hero with a compact localized title, without a subtitle. Search focus now surrounds the full field in olive, with keyboard visibility retained.
+- Added tag icons and links on recipe cards and detail pages, plus a tag filter combined with category and title search. Interface labels cover English, French and Brazilian Portuguese.
+- `npm test`: 19 passing tests. `npm run check`: 55 files, no errors/warnings/hints. `npm run build`: successful Netlify SSR build, with the existing admin chunk-size warning.
+- Browser checks used the isolated local `tag-verification.db`: tag filtering returned the fictional lemon recipe, combining it with the sweets category and title query retained that result, and an incompatible category returned zero. Detail-page tag links and a 390px mobile layout were verified without horizontal overflow.
+- Production tag configuration was explicitly applied on 2026-10-28 after a dry run and a private backup under ignored `backups/`. Existing tag definitions retain their collection bindings, labels and translation group; recipes were added and French/Brazilian Portuguese definitions created. No production recipe, term or assignment was changed.

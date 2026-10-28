@@ -1,0 +1,10 @@
+---
+import type { TaxonomyTerm } from 'emdash';
+import type { Locale } from '../config/locales';
+import { recipeFilterUrl } from '../lib/recipes';
+import { ui } from '../i18n/ui';
+import TagIcon from './TagIcon.astro';
+interface Props { locale: Locale; terms?: TaxonomyTerm[]; }
+const { locale, terms = [] } = Astro.props;
+---
+{terms.length > 0 && <ul class="recipe-tags" aria-label={ui[locale].tags}>{terms.map((term) => <li><a href={recipeFilterUrl(locale, { tag: term.slug })} rel="tag"><TagIcon />{term.label}</a></li>)}</ul>}

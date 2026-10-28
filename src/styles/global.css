@@ -26,21 +26,18 @@
 .languages a:hover { background: #eceee3; }
 .language-flag { display: block; flex-shrink: 0; border-radius: 3px; overflow: hidden; box-shadow: 0 0 0 1px rgb(48 60 44 / .12), 0 1px 2px rgb(48 60 44 / .1); }
 .languages .language-missing { position: absolute; right: 0; top: 0; }
-.intro { padding: 66px 0 54px; display: grid; grid-template-columns: 1.7fr 1fr; gap: 70px; align-items: end; }
+.intro { padding: 44px 0 36px; }
 .eyebrow { text-transform: uppercase; font-size: 10px; font-weight: 600; letter-spacing: .16em; color: #59604f; margin-bottom: 18px; }
 .eyebrow > span { font-size: 17px; margin-right: 8px; vertical-align: -1px; }
-.intro h1 { font-size: clamp(45px, 5.6vw, 70px); }
-.intro h1 span { display: block; }
-.intro h1 span + span { font-style: italic; color: #5e7054; }
-.intro-note { max-width: 260px; color: #666956; font-size: 15px; line-height: 1.8; padding-bottom: 6px; }
-.note-flourish { display: block; font-family: var(--font-serif); font-size: 45px; line-height: 1; color: #8c9978; padding-top: 16px; }
+.intro h1 { font-size: clamp(36px, 4.2vw, 52px); letter-spacing: -.025em; text-wrap: initial; }
 .collection { padding: 32px 0 72px; border-top: 1px solid #dcdccf; }
 .collection-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
 .collection-heading h2 { font-size: 30px; }
 .recipe-count { color: #676d60; font-size: 12px; white-space: nowrap; }
 .search-form { display: flex; gap: 12px; }
 .search-input { display: flex; align-items: center; flex: 1; gap: 12px; background: #fffcf6; border: 1px solid #d5d8ca; padding: 0 18px; border-radius: 5px; color: #6d7864; }
-.search-input input { border: 0; outline-offset: 4px; min-width: 0; width: 100%; background: transparent; color: var(--color-ink); height: 52px; font-size: 14px; }
+.search-input:focus-within { border-color: var(--color-olive); outline: 2px solid var(--color-olive); outline-offset: 2px; }
+.search-input input { border: 0; outline: none; min-width: 0; width: 100%; background: transparent; color: var(--color-ink); height: 52px; font-size: 14px; }
 .search-input input::placeholder { color: #72766a; }
 .search-form button { border: 1px solid var(--color-olive); padding: 10px 23px; background: var(--color-olive); color: white; border-radius: 5px; font-size: 13px; font-weight: 500; }
 .search-form button:hover { background: #374e33; }
@@ -115,10 +112,8 @@ figcaption { font-size: 12px; color: #6e7663; margin-top: 8px; }
   .brand svg { width: 25px; height: 29px; }
   .languages { gap: 0; font-size: 10px; margin-left: auto; }
   .languages a { min-width: 35px; padding: 4px; }
-  .intro { grid-template-columns: 1fr; gap: 22px; padding: 40px 0 34px; }
-  .intro h1 { font-size: clamp(38px,10vw,54px); }
-  .intro-note { max-width: 310px; font-size: 13px; }
-  .note-flourish { display: none; }
+  .intro { padding: 30px 0 28px; }
+  .intro h1 { font-size: clamp(32px, 8vw, 40px); }
   .eyebrow { font-size: 9px; margin-bottom: 15px; }
   .collection { padding-top: 26px; }
   .collection-heading h2 { font-size: 25px; }
@@ -148,3 +143,13 @@ figcaption { font-size: 12px; color: #6e7663; margin-top: 8px; }
   .kitchen-notes h2 { font-size: 30px; }
 }
 @media(prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .card-photo img { transition: none; } }
+
+.tag-icon { flex: 0 0 auto; }
+.recipe-tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 15px 0 0; list-style: none; }
+.recipe-tags a { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border: 1px solid #d5d8ca; border-radius: 4px; color: #4c6147; font-size: 12px; text-decoration: none; overflow-wrap: anywhere; }
+.recipe-tags a:hover { background: #e5e9dd; border-color: var(--color-olive); }
+.tag-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin: -12px 0 28px; font-size: 12px; }
+.tag-filter-label { display: inline-flex; align-items: center; gap: 6px; color: #626a57; }
+.tag-filters a { padding-block: 4px; text-decoration: none; overflow-wrap: anywhere; }
+.tag-filters a:hover, .tag-filters a.active { color: var(--color-olive); text-decoration: underline; text-underline-offset: 5px; }
+.tag-filters a.active { font-weight: 600; }

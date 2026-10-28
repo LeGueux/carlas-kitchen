@@ -11,14 +11,14 @@ export interface Recipe extends Record<string, unknown> {
   terms?: Record<string, TaxonomyTerm[]>;
 }
 
-export async function publishedRecipes(locale: Locale, category?: string): Promise<Recipe[]> {
+export async function publishedRecipes(locale: Locale, category?: string, tag?: string): Promise<Recipe[]> {
   await requireRecipeDatabase();
   const entries: Recipe[] = [];
   let cursor: string | undefined;
   do {
     const page = await getEmDashCollection<'recipes', Recipe>('recipes', {
       status: 'published', locale, limit: 100, cursor,
-      ...(category ? { where: { category } } : {}),
+      ...((category || tag) ? { where: { ...(category ? { category } : {}), ...(tag ? { tag } : {}) } } : {}),
     });
     if (page.error) throw page.error;
     entries.push(...page.entries.map((entry) => entry.data).filter((data) => data.status === 'published' && data.locale === locale));
@@ -38,10 +38,12 @@ async function requireRecipeDatabase() {
 export async function recipeIndexData(locale: Locale, params: URLSearchParams) {
   const query = (params.get('q') ?? '').slice(0, 160);
   const category = (params.get('category') ?? '').slice(0, 160);
-  const [allRecipes, categories] = await Promise.all([
-    publishedRecipes(locale, category || undefined), getTaxonomyTerms('category', { locale, includeCounts: false }),
+  const tag = (params.get('tag') ?? '').slice(0, 160);
+  const [allRecipes, categories, tags] = await Promise.all([
+    publishedRecipes(locale, category || undefined, tag || undefined), getTaxonomyTerms('category', { locale, includeCounts: false }),
+    getTaxonomyTerms('tag', { locale, includeCounts: false }),
   ]);
-  return { query, category, categories, recipes: allRecipes.filter((recipe) => titleMatches(recipe.title, query)) };
+  return { query, category, categories, tag, tags, recipes: allRecipes.filter((recipe) => titleMatches(recipe.title, query)) };
 }
 
 export async function recipeDetail(locale: Locale, slug: string, role = 0) {
@@ -80,3 +82,11 @@ export function titleMatches(title: string, query: string) {
   return normalize(title).includes(normalize(query.trim()));
 }
 export function safeSourceUrl(value?: string) { return value && /^https?:\/\//i.test(value) ? value : undefined; }
+
+export function recipeFilterUrl(locale: Locale, filters: { query?: string; category?: string; tag?: string }) {
+  const params = new URLSearchParams();
+  if (filters.query) params.set('q', filters.query);
+  if (filters.category) params.set('category', filters.category);
+  if (filters.tag) params.set('tag', filters.tag);
+  return localePath(locale) + (params.size ? `?${params}` : '');
+}

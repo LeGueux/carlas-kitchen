@@ -29,6 +29,9 @@
   "taxonomies": [
     { "id": "categories-en", "name": "category", "label": "Categories", "labelSingular": "Category", "hierarchical": false, "collections": ["recipes"], "locale": "en" },
     { "id": "categories-fr", "translationOf": "categories-en", "name": "category", "label": "Catégories", "labelSingular": "Catégorie", "locale": "fr" },
-    { "id": "categories-pt", "translationOf": "categories-en", "name": "category", "label": "Categorias", "labelSingular": "Categoria", "locale": "pt-BR" }
+    { "id": "categories-pt", "translationOf": "categories-en", "name": "category", "label": "Categorias", "labelSingular": "Categoria", "locale": "pt-BR" },
+    { "id": "tags-en", "name": "tag", "label": "Tags", "labelSingular": "Tag", "hierarchical": false, "collections": ["recipes"], "locale": "en" },
+    { "id": "tags-fr", "translationOf": "tags-en", "name": "tag", "label": "Étiquettes", "labelSingular": "Étiquette", "locale": "fr" },
+    { "id": "tags-pt", "translationOf": "tags-en", "name": "tag", "label": "Etiquetas", "labelSingular": "Etiqueta", "locale": "pt-BR" }
   ]
 }

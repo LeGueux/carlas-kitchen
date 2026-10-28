@@ -21,6 +21,7 @@
     "db:demo": "node --import tsx scripts/bootstrap.ts --demo",
     "db:migrate": "emdash migrate",
     "db:check": "emdash migrate --check",
+    "db:tags": "node --import tsx scripts/configure-recipe-tags.ts",
     "db:portuguese": "node --import tsx scripts/migrate-portuguese.ts"
   },
   "dependencies": {
