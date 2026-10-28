@@ -1,0 +1,50 @@
+export const translationCopy = {
+  "fr": {
+    "title": "Traductions automatiques",
+    "note": "Enregistrez la recette avant de lancer la traduction. Les textes enregistrés en portugais seront envoyés à DeepL.",
+    "source": "Ouvrez la version Português (Brasil) pour générer les traductions.",
+    "generate": "Générer les brouillons FR et EN",
+    "busy": "Traduction en cours…",
+    "replace": "Remplacer aussi les textes des versions existantes dans un nouveau brouillon",
+    "keep": "Les versions existantes sont conservées par défaut. Les traductions ne sont jamais publiées automatiquement.",
+    "unavailable": "Le service de traduction n’est pas configuré. Contactez l’administrateur.",
+    "success": "Brouillon enregistré",
+    "skipped": "Version existante conservée",
+    "failed": "Échec : réessayez après avoir enregistré la recette.",
+    "review": "Relire la traduction",
+    "conflict": "Cette version a changé ou est ouverte par un autre éditeur. Rechargez et réessayez.",
+    "quota": "Le quota de traduction est épuisé. Contactez l’administrateur."
+  },
+  "en": {
+    "title": "Machine Translations",
+    "note": "Save the recipe before starting the translation. The saved text in Portuguese will be sent to DeepL.",
+    "source": "Open the Português (Brasil) version to generate the translations.",
+    "generate": "Generate drafts in French and English",
+    "busy": "Translation in progress…",
+    "replace": "Also replace the text in existing versions with the text in a new draft",
+    "keep": "Existing versions are retained by default. Translations are never published automatically.",
+    "unavailable": "The translation service is not configured. Contact the administrator.",
+    "success": "Saved draft",
+    "skipped": "Existing version retained",
+    "failed": "Failure: Please try again after saving the recipe.",
+    "review": "Proofread the translation",
+    "conflict": "This version has changed or is open in another editor. Reload and try again.",
+    "quota": "The translation quota has been exhausted. Contact the administrator."
+  },
+  "pt-BR": {
+    "title": "Traduções automáticas",
+    "note": "Salve a receita antes de iniciar a tradução. Os textos salvos em português serão enviados ao DeepL.",
+    "source": "Abra a versão em Português (Brasil) para gerar as traduções.",
+    "generate": "Gerar os rascunhos em FR e EN",
+    "busy": "Tradução em andamento…",
+    "replace": "Substituir também os textos das versões existentes em um novo rascunho",
+    "keep": "As versões existentes são mantidas por padrão. As traduções nunca são publicadas automaticamente.",
+    "unavailable": "O serviço de tradução não está configurado. Entre em contato com o administrador.",
+    "success": "Rascunho salvo",
+    "skipped": "Versão existente mantida",
+    "failed": "Falha: tente novamente depois de salvar a receita.",
+    "review": "Revisar a tradução",
+    "conflict": "Esta versão foi alterada ou está sendo editada por outro usuário. Recarregue a página e tente novamente.",
+    "quota": "A cota de tradução foi esgotada. Entre em contato com o administrador."
+  }
+} as const;

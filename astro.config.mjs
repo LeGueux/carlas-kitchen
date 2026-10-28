@@ -44,7 +44,12 @@ export default defineConfig({
       mcp: false,
       toolbar: false,
       updateCheck: false,
-      plugins: [],
+      plugins: [{
+        id: 'kitchen-translations', version: '1.0.0', format: 'native',
+        entrypoint: path('./src/plugins/translations/index.ts'),
+        adminEntry: path('./src/plugins/translations/admin.tsx'),
+        options: { adminEntry: path('./src/plugins/translations/admin.tsx') },
+      }],
       sandboxed: [],
       admin: { siteName: "Carla’s Kitchen", locales: [...locales] },
     }),

@@ -40,3 +40,11 @@ If saving/uploading reports that the service is unavailable, keep your text in t
 ## Tags
 
 In a recipe's Settings, use Tags / Étiquettes / Etiquetas for details such as ingredients or cooking methods. Create terms from the chooser, as for categories, and provide their translations in Taxonomies. Tags appear with a small tag icon on recipe cards and recipe pages. Clicking one opens the notebook filtered by that tag. The tag filter can be combined with category and title search; “All tags” removes only the tag filter. Terms without a translation in the selected language are not displayed there.
+
+## Generate French and English drafts
+
+Open the Portuguese (Brazil) recipe and save your changes. In Settings, find the **FR + EN** panel and choose **Generate drafts in French and English**. Only the latest saved text is translated; text still being typed is not included. The title, description, ingredients, steps and notes are sent to DeepL. The photos and numerical fields remain shared through EmDash.
+
+Existing language versions are preserved by default. If an existing version still contains copied Portuguese text, explicitly check the option to replace existing texts in a new draft before generating. This replaces all five text fields in those drafts; review any manual corrections first. Existing public versions stay online until you publish the replacement drafts. Scheduled entries and conflicting concurrent edits are refused.
+
+The panel reports the result separately for FR and EN and links to each version for review. Read the ingredients and preparation before publishing through the normal EmDash controls. If one language fails, the successful draft is retained. A quota or configuration error requires the administrator; repeated clicks do not bypass the quota.

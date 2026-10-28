@@ -12,7 +12,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
     return error('DISABLED', 'Scheduled publishing is unavailable in this serverless POC. Use Publish now.', 403);
   }
   // Backups, transfers, remote plugin installation and scheduler endpoints are outside this POC.
-  if (/^\/_emdash\/api\/(?:admin\/(?:backups|transfer)|plugins|maintenance|cron)(?:\/|$)/.test(path)) {
+  if (/^\/_emdash\/api\/(?:admin\/(?:backups|transfer)|plugins|maintenance|cron)(?:\/|$)/.test(path) && !/^\/_emdash\/api\/plugins\/kitchen-translations\/(?:status|translate)$/.test(path)) {
     return error('DISABLED', 'This serverless POC uses manual backups and immediate publication.', 403);
   }
   if (path.startsWith('/_emdash/api/media/file/')) {

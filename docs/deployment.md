@@ -78,3 +78,11 @@ No real developer or Carla account was created by this implementation session: n
 ## Preview isolation
 
 Deploy previews and non-production branch deploys return 503 for dynamic routes before CMS initialization. This is intentional; they are not usable editor environments. Their builds do not receive the production token/key. Do not temporarily remove the gate while pointing at production. A future writable staging environment must have a separate Netlify site, Turso database, media/session stores and credentials.
+
+## Optional recipe translation
+
+The native `kitchen-translations` plugin adds an editor sidebar panel and two private routes (`status`, `translate`). It requires native editor permission and only reads recipe content/revisions; drafts are saved through the existing content API with revision tokens and edit-lock enforcement. No sandbox, cron job, new database schema or automatic publishing is added. The middleware allows only these two exact plugin routes; other plugin management/execution endpoints stay disabled.
+
+Set `DEEPL_API_KEY` only in the site's **Production** environment variables, then deploy. It is read at runtime, never embedded in the descriptor or sent to the browser. No key is needed to build. Legacy Free API keys ending in `:fx` use `api-free.deepl.com`; other keys use `api.deepl.com`. Provider errors and quota failures are sanitized. Removing the key disables generation without affecting recipe editing or the public site. The integration does not configure an automatic glossary or style profile.
+
+For local testing put only `DEEPL_API_KEY=...` in ignored `.env.translation`. Start the local server with `LIBSQL_DATABASE_URL=file:./data/translation-verification.db` and `node --env-file=.env.translation scripts/astro.mjs dev --host 127.0.0.1`, after explicitly initializing that isolated database. Never load `.env.remote` into a development server. With the isolated server running, `node scripts/check-translations.mjs` creates fictional entries and calls DeepL for real; it is hard-coded to localhost and requires a configured API key. It verifies linked drafts, shared numbers, private pages, duplicate prevention, stale-write refusal, auth and CSRF. It uses the native development test account; never point it at a production database.

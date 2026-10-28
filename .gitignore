@@ -5,6 +5,7 @@ dist/
 .emdash/
 .env
 .env.*
+.env *
 !.env.example
 data/
 backups/
