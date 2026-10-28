@@ -12,3 +12,4 @@ backups/
 test-results/
 *.log
 emdash-env.d.ts
+output/
